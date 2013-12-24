@@ -1,0 +1,19 @@
+<div class="modal fade" id="fangateModal">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <% if(_.c('mod_fangate_closable') === "1") { %>
+                <button type="button" class="close closemodel" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <% } %>
+            </div>
+            <div class="modal-body">
+                <p><%=_.c('mod_fangate_content') %></p>
+            </div>
+            <% if(_.c('mod_fangate_closable') === "1") { %>
+            <div class="modal-footer">
+                <a class="closemodel" data-dismiss="modal"><%= _.t('close_fangate') %></a>
+            </div>
+            <% } %>
+        </div>
+    </div>
+</div>
