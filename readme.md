@@ -11,8 +11,16 @@ Shows a modal or a single page to get new social media fans.
 ### Dependencies
 * jQuery
 * logging module
+* facebook module
+* twitter module
+* google module
 
 ### Example
 ```javascript
 ...
+```
+
+### Load module with require
+```
+modules/fangate/js/views/FacebookView
 ```

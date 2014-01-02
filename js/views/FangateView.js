@@ -1,15 +1,11 @@
-/*global FB: true */
 define([
     'jquery',
     'underscore',
     'backbone',
     'bootstrap',
     'modules/fangate/js/models/FangateModel',
-    'text!modules/fangate/templates/fangate.html'/*,
-     'modules/facebook/js/views/FacebookView',
-     'modules/twitter/js/views/TwitterView',
-     'modules/google/js/views/GoogleView'*/
-], function ($, _, Backbone, Bootstrap, FangateModel, fangateTemplate, Facebook, Twitter, Google) {
+    'text!modules/fangate/templates/fangate.html'
+], function ($, _, Backbone, Bootstrap, FangateModel, fangateTemplate) {
 
     'use strict';
 
@@ -47,7 +43,6 @@ define([
              compiledTemplate = _.template(fangateTemplate, data);*/
 
             var compiledTemplate = _.template(fangateTemplate, {});
-
             this.$el.append(compiledTemplate);
             //this.socialButton();
 
@@ -81,6 +76,8 @@ define([
             if (typeof model === 'undefined' || model.get('isFan') === false) {
                 // open modal without keyboard and backdrop click support
                 fangate.modal({keyboard: false, backdrop: 'static'});
+                // show social buttons
+                this.socialButton();
                 // change url to call fangate again if needed
                 this.goTo('call/fangate', false);
 
@@ -114,59 +111,53 @@ define([
 
         socialButton: function () {
             var google, twitter, facebook,
-                that = this,
-                callback;
+                that = this;
 
             // facebook like button
             if (_.c('fangate_social_networks').indexOf('fb') !== -1) {
-                //facebook = new Facebook();
-                if (_.isUndefined(_.singleton.view.facebook)) {
-                    _.singleton.view.facebook = new Facebook();
-                }
-                facebook = _.singleton.view.facebook;
+                require([
+                    'modules/facebook/js/views/FacebookView'
+                ], function (Facebook) {
+                    facebook = Facebook.init();
 
-                facebook.init();
-                callback = function () {
-                    //_.debug.log('facebook callback function gestartet');
-                    that.saveAsFan({
-                        target: {
-                            className: 'fangate_btn_facebook'
-                        }
+                    facebook.libInit();
+                    facebook.like(function () {
+                        that.saveAsFan({
+                            target: {
+                                className: 'fangate_btn_facebook'
+                            }
+                        });
                     });
-                };
-                facebook.like(callback);
+                });
             }
 
             // google follow button
             if (_.c('fangate_social_networks').indexOf('gplus') !== -1) {
-                //google = new Google();
-                if (_.isUndefined(_.singleton.view.google)) {
-                    _.singleton.view.google = new Google();
-                }
-                google = _.singleton.view.google;
-
-                google.init();
+                require([
+                    'modules/google/js/views/GoogleView'
+                ], function (Google) {
+                    google = Google.init();
+                    google.libInit();
+                });
             }
 
             // twitter follow button
             if (_.c('fangate_social_networks').indexOf('twitter') !== -1) {
-                //twitter = new Twitter();
-                if (_.isUndefined(_.singleton.view.twitter)) {
-                    _.singleton.view.twitter = new Twitter();
-                }
-                twitter = _.singleton.view.twitter;
+                require([
+                    'modules/twitter/js/views/TwitterView'
+                ], function (Twitter) {
+                    twitter = Twitter.init();
 
-                twitter.init();
-
-                callback = function (response) {
-                    //_.debug.log('google callback function gestartet - ' + response);
-                    that.saveAsFan({
-                        target: {
-                            className: 'fangate_btn_twitter'
+                    twitter.libInit();
+                    twitter.follow(function (response) {
+                            that.saveAsFan({
+                                target: {
+                                    className: 'fangate_btn_twitter'
+                                }
+                            });
                         }
-                    });
-                };
-                twitter.follow(callback);
+                    );
+                });
             }
 
             return this;

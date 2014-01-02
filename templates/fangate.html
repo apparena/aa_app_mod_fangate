@@ -8,6 +8,23 @@
             </div>
             <div class="modal-body">
                 <p><%=_.c('mod_fangate_content') %></p>
+
+                <div class="social-button">
+                    <% if(_.c('fangate_social_networks').indexOf("fb") !== -1) { %>
+                    <div class="fb-like fangate_btn_facebook" data-href="<%- _.aa.instance.fb_page_url %>" data-width="450" data-layout="button_count" data-show-faces="false" data-send="false" data-locale="<%- _.t('share_lang') %>"></div>
+                    <% }
+
+                    if(_.c('fangate_social_networks').indexOf("gplus") !== -1 && _.c('share_googleplus_id') !== '') { %>
+                    <div id="fangate_btn_google" class="fangate_btn_google">
+                        <div class="g-follow" data-annotation="bubble" data-height="20" data-href="//plus.google.com/<%- _.c('share_googleplus_id') %>" data-rel="author"></div>
+                    </div>
+                    <% }
+
+                    if(_.c('fangate_social_networks').indexOf("twitter") !== -1 &&
+                    _.c('share_twitter_id') !== '') { %>
+                    <a href="https://twitter.com/<%- _.c('share_twitter_id')%>" class="twitter-follow-button fangate_btn_twitter" data-show-count="true" data-lang="<%- _.t('share_lang') %>">@<%= _.c('share_twitter_id') %><%= _.t('follow') %></a>
+                    <% }%>
+                </div>
             </div>
             <% if(_.c('mod_fangate_closable') === "1") { %>
             <div class="modal-footer">
