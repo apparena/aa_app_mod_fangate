@@ -2,7 +2,7 @@
 define([
     'jquery',
     'underscore',
-    'modules/fangate/js/views/FangateView'
+    'modules/aa_app_mod_fangate/js/views/FangateView'
 ], function ($, _, FangateView) {
     'use strict';
 

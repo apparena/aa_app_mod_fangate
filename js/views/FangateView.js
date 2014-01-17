@@ -4,8 +4,8 @@ define([
     'underscore',
     'backbone',
     'bootstrap',
-    'modules/fangate/js/models/FangateModel',
-    'text!modules/fangate/templates/fangate.html'
+    'modules/aa_app_mod_fangate/js/models/FangateModel',
+    'text!modules/aa_app_mod_fangate/templates/fangate.html'
 ], function (View, $, _, Backbone, Bootstrap, FangateModel, fangateTemplate) {
     'use strict';
 
@@ -116,7 +116,7 @@ define([
                 // facebook like button
                 if (_.c('fangate_social_networks').indexOf('fb') !== -1) {
                     require([
-                        'modules/facebook/js/views/FacebookView'
+                        'modules/aa_app_mod_facebook/js/views/FacebookView'
                     ], function (Facebook) {
                         facebook = Facebook().init();
 
@@ -134,7 +134,7 @@ define([
                 // google follow button
                 if (_.c('fangate_social_networks').indexOf('gplus') !== -1) {
                     require([
-                        'modules/google/js/views/GoogleView'
+                        'modules/aa_app_mod_google/js/views/GoogleView'
                     ], function (Google) {
                         google = Google().init();
                         google.libInit();
@@ -144,7 +144,7 @@ define([
                 // twitter follow button
                 if (_.c('fangate_social_networks').indexOf('twitter') !== -1) {
                     require([
-                        'modules/twitter/js/views/TwitterView'
+                        'modules/aa_app_mod_twitter/js/views/TwitterView'
                     ], function (Twitter) {
                         twitter = Twitter().init();
 
