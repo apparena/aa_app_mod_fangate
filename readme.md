@@ -21,5 +21,5 @@ Shows a modal or a single page to get new social media fans.
 
 ### Load module with require
 ```
-modules/fangate/js/views/FacebookView
+modules/aa_app_mod_fangate/js/views/FacebookView
 ```
