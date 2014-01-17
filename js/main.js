@@ -7,6 +7,6 @@ define([
     'use strict';
 
     return function () {
-        FangateView.init().render().openFangate();
+        FangateView().init().render().openFangate();
     };
 });
