@@ -1,10 +1,7 @@
 {
-    "name":    "fangate",
+    "name":    "aa_app_mod_fangate",
     "version": "1.0.0",
-    "main":    "./js/main.js",
-
     "dependencies": {
-        "jquery":              "2",
         "aa_app_mod_logging":  "latest",
         "aa_app_mod_facebook": "latest",
         "aa_app_mod_google":   "latest",

@@ -1,5 +1,5 @@
 # App-Arena.com App Module: Fangate
-Github: https://github.com/apparena/aa_app_mod_logging
+Github: https://github.com/apparena/aa_app_mod_fangate
 
 Docs:   http://www.app-arena.com/docs/display/developer
 
@@ -9,7 +9,6 @@ This is a module of the [aa_app_template](https://github.com/apparena/aa_app_tem
 Shows a modal or a single page to get new social media fans.
 
 ### Dependencies
-* jQuery
 * logging module
 * facebook module
 * twitter module
