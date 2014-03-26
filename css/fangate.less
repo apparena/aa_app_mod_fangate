@@ -1,0 +1,55 @@
+#fangateModal {
+    .fangate-fullscreen {
+        padding: 0 !important;
+        margin: 0 !important;
+        position: fixed !important;
+        top: 0 !important;
+        left: 0 !important;
+        width: 100% !important;
+        height: 100% !important;
+
+        .modal-content {
+            border-radius: 0 !important;
+            width: 100% !important;
+            height: 100% !important;
+        }
+    }
+
+    .modal-footer {
+        text-align: inherit;
+        width: 100%;
+    }
+
+    .fangate_btn {
+        position: absolute;
+        width: 230px;
+        height: 40px;
+        .text-center();
+    }
+
+    .fangate_btn_facebook {
+        top: @fangate_btn_pos_facebook_top !important;
+        left: @fangate_btn_pos_facebook_left !important;
+        padding-top: 9px;
+        background-color: #3C599D;
+    }
+
+    .fangate_btn_google {
+        top: @fangate_btn_pos_google_top !important;
+        left: @fangate_btn_pos_google_left !important;
+        padding-top: 10px;
+        background-color: #CD4B31;
+    }
+
+    .fangate_btn_twitter {
+        top: @fangate_btn_pos_twitter_top !important;
+        left: @fangate_btn_pos_twitter_left !important;
+        padding-top: 9px;
+        background-color: #2C9FD6;
+    }
+
+    .closemodel {
+        top: @fangate_btn_pos_close_top !important;
+        left: @fangate_btn_pos_close_left !important;
+    }
+}
