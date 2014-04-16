@@ -79,7 +79,7 @@ define([
                     // show social buttons
                     this.socialButton();
                     // change url to call fangate again if needed
-                    this.goTo('call/fangate', false);
+                    //this.goTo('call/fangate', false);
 
                     // log this action and count adminlog up
                     this.log('group', {
@@ -94,12 +94,15 @@ define([
 
                     fangate.on('hidden.bs.modal', function () {
                         fangate.remove();
-                        that.goTo('', false);
+                        //that.goTo('', false);
+                        //_.router.goToPreviewsPage(false);
+                        _.fangate = 1;
                         //Remove();
                     });
 
                     if (fangate.length === 0) {
-                        that.goTo('', false);
+                        //that.goTo('', false);
+                        //_.router.goToPreviewsPage(false);
                     }
                 } else {
                     fangate.remove();
@@ -111,10 +114,11 @@ define([
 
             socialButton: function () {
                 var google, twitter, facebook,
-                    that = this;
+                    that = this,
+                    social_networks = _.c('fangate_social_networks');
 
                 // facebook like button
-                if (_.c('fangate_social_networks').indexOf('fb') !== -1) {
+                if (social_networks.indexOf('fb') !== -1) {
                     require([
                         'modules/aa_app_mod_facebook/js/views/FacebookView'
                     ], function (Facebook) {
@@ -127,12 +131,17 @@ define([
                                     className: 'fangate_btn_facebook'
                                 }
                             });
+
+                            // close fangate if user liked the page, but only if activated or only FB button is shown
+                            if ((social_networks.indexOf('gplus') === -1 && social_networks.indexOf('twitter') === -1) || _.c('fangate_close_on_like').toString() !== '0') {
+                                $('#fangateModal').modal('hide');
+                            }
                         });
                     });
                 }
 
                 // google follow button
-                if (_.c('fangate_social_networks').indexOf('gplus') !== -1) {
+                if (social_networks.indexOf('gplus') !== -1) {
                     require([
                         'modules/aa_app_mod_google/js/views/GoogleView'
                     ], function (Google) {
@@ -142,7 +151,7 @@ define([
                 }
 
                 // twitter follow button
-                if (_.c('fangate_social_networks').indexOf('twitter') !== -1) {
+                if (social_networks.indexOf('twitter') !== -1) {
                     require([
                         'modules/aa_app_mod_twitter/js/views/TwitterView'
                     ], function (Twitter) {
@@ -167,24 +176,24 @@ define([
                 var data = {};
 
                 switch (element.target.className) {
-                    case 'fangate_btn_facebook':
-                        data = {
-                            isFan:         true,
-                            isFacebookFan: true
-                        };
-                        break;
-                    case 'fangate_btn_google':
-                        data = {
-                            isFan:       true,
-                            isGoogleFan: true
-                        };
-                        break;
-                    case 'fangate_btn_twitter':
-                        data = {
-                            isFan:        true,
-                            isTwitterFan: true
-                        };
-                        break;
+                case 'fangate_btn_facebook':
+                    data = {
+                        isFan:         true,
+                        isFacebookFan: true
+                    };
+                    break;
+                case 'fangate_btn_google':
+                    data = {
+                        isFan:       true,
+                        isGoogleFan: true
+                    };
+                    break;
+                case 'fangate_btn_twitter':
+                    data = {
+                        isFan:        true,
+                        isTwitterFan: true
+                    };
+                    break;
                 }
 
                 this.model.set(data);
@@ -206,5 +215,5 @@ define([
         });
 
         return View;
-    }
+    };
 });

@@ -8,11 +8,11 @@ if(_.c('fangate_pagetab_closebutton') === "0" && _.aa.env.base !== 'website') {
 <div class="modal fade" id="fangateModal">
     <div class="modal-dialog <% if(_.c('fangate_fullscreen') === '1'){print('fangate-fullscreen');}%>">
         <div class="modal-content">
-            <div class="modal-header">
+            <!--<div class="modal-header">
                 <% if(_.c('mod_fangate_closable') === "1") { %>
                 <button type="button" class="close closemodel" data-dismiss="modal" aria-hidden="true">&times;</button>
                 <% } %>
-            </div>
+            </div>-->
             <div class="modal-body">
                 <%=_.c('mod_fangate_content') %>
 
@@ -33,12 +33,15 @@ if(_.c('fangate_pagetab_closebutton') === "0" && _.aa.env.base !== 'website') {
                         <a href="https://twitter.com/<%- _.c('share_twitter_id')%>" class="twitter-follow-button" data-show-count="true" data-lang="<%- _.t('share_lang') %>">@<%= _.c('share_twitter_id') %><%= _.t('follow') %></a>
                     </div>
                     <% }%>
+                    <% if(_.c('mod_fangate_closable') === "1") { %>
+                        <a href="#" class="closemodel <%= close_btn_class %>" data-dismiss="modal"><%= _.t('close_fangate') %></a>
+                    <% } %>
                 </div>
             </div>
             <% if(_.c('mod_fangate_closable') === "1") { %>
-            <div class="modal-footer">
+            <!--<div class="modal-footer">
                 <a href="#" class="closemodel <%= close_btn_class %>" data-dismiss="modal"><%= _.t('close_fangate') %></a>
-            </div>
+            </div>-->
             <% } %>
         </div>
     </div>
