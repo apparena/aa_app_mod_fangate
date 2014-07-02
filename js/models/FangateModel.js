@@ -10,7 +10,7 @@ define([
         Model.namespace = 'fangate';
 
         Model.code = Backbone.Model.extend({
-            localStorage: new Backbone.LocalStorage('AppArenaAdventskalenderApp_' + _.aa.instance.i_id + '_Fan'),
+            localStorage: new Backbone.LocalStorage('AppArenaFangate_' + _.aa.instance.i_id),
 
             defaults: {
                 isFan:         false,
@@ -25,5 +25,5 @@ define([
         });
 
         return Model;
-    }
+    };
 });
