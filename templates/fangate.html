@@ -1,36 +1,73 @@
 <div class="modal fade" id="fangateModal">
     <div class="modal-dialog">
         <div class="modal-content">
-            <div class="modal-header">
-                <% if(_.c('mod_fangate_closable') === "1") { %>
-                <button type="button" class="close closemodel" data-dismiss="modal" aria-hidden="true">&times;</button>
-                <% } %>
-            </div>
             <div class="modal-body">
-                <p><%=_.c('mod_fangate_content') %></p>
+                <img class="img-responsive" src="<%= _.c('fangate_bg', 'src') %>">
+                <div class="fangate-content">
+                    <%=_.c('mod_fangate_content') %>
+                </div>
+                <div class="modal-footer hidden-xs">
+                    <h2 class="hidden-sm text-center"><i class="fa fa-arrow-down fa-x2"></i> <strong><%= _.c('fangate_support_text') %></strong> <i class="fa fa-arrow-down fa-x2"></i></h2>
+                    <h4 class="visible-sm text-center"><i class="fa fa-arrow-down fa-x2"></i> <strong><%= _.c('fangate_support_text') %></strong> <i class="fa fa-arrow-down fa-x2"></i></h4>
+                    <br/>
+                    <div class="social-button text-center">
+                        <% if(_.c('fangate_social_networks').indexOf("fb") !== -1) { %>
+                        <div class="fangate_btn fangate_btn_fb_blue">
+                            <div id ="fangate_btn_facebook" class="fangate_btn_facebook">
+                                <fb:like href="<% if ( _.aa.instance.fb_page_url.length > 25 ) { %> <%= _.aa.instance.fb_page_url %> <% } else { %> <%= _.aa.instance.share_url %> <% } %>" layout="button_count" action="like" show_faces="true" share="false"></fb:like>
+                            </div>
+                        </div>
+                        <% }
 
-                <div class="social-button">
+                        if(_.c('fangate_social_networks').indexOf("gplus") !== -1 && _.c('share_googleplus_id') !== '') { %>
+                        <div class="fangate_btn fangate_btn_red">
+                            <div id="fangate_btn_google" class="fangate_btn_google">
+                                <div class="g-plusone" data-annotation="bubble" data-size="medium" data-callback="google.follow" data-href="//plus.google.com/<%- _.c('share_googleplus_id') %>" data-rel="author"></div>
+                            </div>
+                        </div>
+                        <% }
+
+                        if(_.c('fangate_social_networks').indexOf("twitter") !== -1 && _.c('share_twitter_id') !== '') { %>
+                        <div class="fangate_btn fangate_btn_tw_blue">
+                            <a href="https://twitter.com/<%- _.c('share_twitter_id')%>" class="twitter-follow-button fangate_btn_twitter" data-show-count="true" data-lang="<%- _.t('share_lang') %>">@<%= _.c('share_twitter_id') %><%= _.t('follow') %></a>
+                        </div>
+                        <% }%>
+                    </div>
+                    <% if ( _.c('mod_fangate_closable') !== '0' || !$('body').hasClass('page') ) { %>
+                        <a class="closemodel" data-dismiss="modal"><strong><%= _.t('close_fangate') %></strong></a>
+                    <% } %>
+                </div>
+            </div>
+            <div class="modal-footer-mobile visible-xs">
+                <h2 class="hidden-sm text-center"><i class="fa fa-arrow-down fa-x2"></i> <strong><%= _.c('fangate_support_text') %></strong> <i class="fa fa-arrow-down fa-x2"></i></h2>
+                <h4 class="visible-sm text-center"><i class="fa fa-arrow-down fa-x2"></i> <strong><%= _.c('fangate_support_text') %></strong> <i class="fa fa-arrow-down fa-x2"></i></h4>
+                <br/>
+                <div class="social-button text-center">
                     <% if(_.c('fangate_social_networks').indexOf("fb") !== -1) { %>
-                    <div class="fb-like fangate_btn_facebook" data-href="<%- _.aa.instance.fb_page_url %>" data-width="450" data-layout="button_count" data-show-faces="false" data-send="false" data-locale="<%- _.t('share_lang') %>"></div>
+                    <div class="fangate_btn fangate_btn_fb_blue">
+                        <fb:like href="<% if ( _.aa.instance.fb_page_url.length > 25 ) { %> <%= _.aa.instance.fb_page_url %> <% } else { %> <%= _.aa.instance.share_url %> <% } %>" layout="button_count" action="like" show_faces="true" share="false"></fb:like>
+                    </div>
                     <% }
 
                     if(_.c('fangate_social_networks').indexOf("gplus") !== -1 && _.c('share_googleplus_id') !== '') { %>
-                    <div id="fangate_btn_google" class="fangate_btn_google">
-                        <div class="g-follow" data-annotation="bubble" data-height="20" data-href="//plus.google.com/<%- _.c('share_googleplus_id') %>" data-rel="author"></div>
+                    <div class="fangate_btn fangate_btn_red">
+                        <div id="fangate_btn_google" class="fangate_btn_google">
+                            <div class="g-follow" data-annotation="bubble" data-size="small" data-href="//plus.google.com/<%- _.c('share_googleplus_id') %>" data-rel="author"></div>
+                        </div>
                     </div>
                     <% }
 
                     if(_.c('fangate_social_networks').indexOf("twitter") !== -1 &&
                     _.c('share_twitter_id') !== '') { %>
-                    <a href="https://twitter.com/<%- _.c('share_twitter_id')%>" class="twitter-follow-button fangate_btn_twitter" data-show-count="true" data-lang="<%- _.t('share_lang') %>">@<%= _.c('share_twitter_id') %><%= _.t('follow') %></a>
+                    <div class="fangate_btn fangate_btn_tw_blue">
+                        <a href="https://twitter.com/<%- _.c('share_twitter_id')%>" class="twitter-follow-button fangate_btn_twitter" data-show-count="true" data-lang="<%- _.t('share_lang') %>">@<%= _.c('share_twitter_id') %><%= _.t('follow') %></a>
+                    </div>
                     <% }%>
                 </div>
+                <% if ( _.c('mod_fangate_closable') !== '0' || !$('body').hasClass('page') ) { %>
+                    <a class="closemodel" data-dismiss="modal"><strong><%= _.t('close_fangate') %></strong></a>
+                <% } %>
             </div>
-            <% if(_.c('mod_fangate_closable') === "1") { %>
-            <div class="modal-footer">
-                <a class="closemodel" data-dismiss="modal"><%= _.t('close_fangate') %></a>
-            </div>
-            <% } %>
         </div>
     </div>
 </div>

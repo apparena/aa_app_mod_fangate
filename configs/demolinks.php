@@ -1,1 +1,1 @@
-<a href="#page/fangate" class="btn btn-default">Fangate Demo</a>
+<a href="#mod/fangate" class="btn btn-default">Fangate Demo</a>
