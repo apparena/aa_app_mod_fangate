@@ -1,8 +1,7 @@
 # App-Arena.com App Module: Fangate
-**Github:** https://github.com/apparena/aa_app_mod_fangate
-**Docs:** http://www.appalizr.com/index.php/fangate.html
-
-This is a module of the [aa_app_template](https://github.com/apparena/aa_app_template)
+* **Github:** https://github.com/apparena/aa_app_mod_fangate
+* **Docs:** http://www.appalizr.com/index.php/fangate.html
+* This is a module of the [aa_app_template](https://github.com/apparena/aa_app_template)
 
 ## Module job
 Shows a modal or a single page to get new social media fans. You can show the fangate as window or as fullscreen and with some more options.
